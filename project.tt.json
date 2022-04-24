@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "taro-mikasayw",
+  "appid": "wxa330e44d3ba2f0b5",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}
