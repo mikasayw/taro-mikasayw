@@ -10,11 +10,11 @@ export default {
   setup() {
     const { router } = useRouter();
 
-    const onView = (type) => {
+    const onView = (type: string) => {
       switch (type) {
         case 'waterMark':
           router.navigateTo({
-            url: '/pages/feat/water'
+            url: '/pages/waterMark/index'
           });
           break;
         default:
@@ -30,8 +30,6 @@ export default {
 </script>
 
 <template>
-  <!-- <NumberDisplay />
-        <NumberSubmit /> -->
   <view class="bg" />
   <view class="user-info flexbox">
     <view class="avatar">
@@ -40,16 +38,16 @@ export default {
     <open-data type="userNickName" default-text="mirs" />
   </view>
 
-  <view class="content flexbox">
-    <view class="col-left" @tap="onView('waterMark')">
-      <view class="col-left-text">
-        <nut-icon name="JIMI40" size="18"></nut-icon>
+  <view class="feature flexbox">
+    <view class="feature__left" @tap="onView('waterMark')">
+      <view class="feature__title">
+        <nut-icon name="photograph" size="16"></nut-icon>
         <text class="text">图片水印</text>
       </view>
     </view>
-    <view class="col-right">
-      <view class="col-1">图片水印</view>
-      <view class="col-1">图片水印</view>
+    <view class="feature__right">
+      <view class="feature__right__chunk"></view>
+      <view class="feature__right__chunk"></view>
     </view>
   </view>
 
@@ -74,7 +72,7 @@ export default {
   margin-top: 300px;
   padding: 0 40px;
   justify-content: flex-start;
-  color: #333333;
+  color: $font-color;
   .avatar {
     border: 2px solid #ffffff;
     width: 100px;
@@ -85,21 +83,33 @@ export default {
   }
 }
 
-.content {
+.feature {
   margin: 50px 40px 0 40px;
-  font-size: 30px;
-  color: #2c3e50;
   align-items: flex-start;
   justify-content: space-between;
-  .col-left {
-    position: relative;
+  .feature__title {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    .text {
+      font-size: 28px;
+      margin-left: 15px;
+      font-weight: 500;
+    }
+  }
+  .feature__left {
     flex: 1;
+    position: relative;
     margin-right: 40px;
     height: 300px;
     border-radius: 20px;
     background-image: url('https://s2.loli.net/2022/04/22/cjAvafzTLr4nOmM.jpg');
     background-size: 100% 100%;
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px 2px $bg-weak-color;
     &::before {
       content: '';
       position: absolute;
@@ -107,61 +117,36 @@ export default {
       left: -6px;
       right: -6px;
       bottom: -6px;
-      border: 2px solid #333333;
+      border: 2px solid $font-color;
       border-radius: 20px;
       animation: move 5s linear infinite;
     }
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: #252d3f;
-      border-radius: 20px;
-      opacity: 0.3;
-    }
-    .col-left-text {
-      position: absolute;
-      top: 13px;
-      right: 30px;
-      z-index: 1;
-      display: inline-flex;
-      align-items: center;
-      color: #ffffff;
-      .text {
-        margin-left: 15px;
-        font-weight: bold;
-      }
-    }
   }
-  .col-right {
+  .feature__right {
     flex: 1;
-    .col-1 {
+    position: relative;
+    .feature__right__chunk {
       position: relative;
       height: 135px;
       border-radius: 20px;
-      background-color: #252d3f;
-      background-image: url('https://s2.loli.net/2022/04/22/ex3d6g18bitq2Er.png');
+      background-image: url('https://s2.loli.net/2022/04/22/PJTBR4CXkSrlI59.jpg');
       background-size: 100% 100%;
-      box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: #252d3f;
-        border-radius: 20px;
-        opacity: 0.3;
-      }
+      box-shadow: 0px 0px 20px 5px $bg-weak-color;
       &:last-child {
-        background-color: #252d3f;
         margin-top: 30px;
       }
     }
+  }
+  .feature__left::after,
+  .feature__right .feature__right__chunk::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px;
+    background-color: $bg-weak-color;
   }
 }
 
