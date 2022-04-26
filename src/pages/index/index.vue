@@ -1,32 +1,33 @@
 <script lang="ts">
-import useRouter from '@/hooks/router';
-// import Barrage from "@/components/barrage";
+import useRouter from '@/hooks/router'
 
 export default {
   name: 'Index',
-  components: {
-    // Barrage,
-  },
   setup() {
-    const { router } = useRouter();
+    const { router } = useRouter()
 
     const onView = (type: string) => {
       switch (type) {
         case 'waterMark':
           router.navigateTo({
             url: '/pages/waterMark/index'
-          });
-          break;
+          })
+          break
+        case 'room':
+          router.navigateTo({
+            url: '/pages/room/index'
+          })
+          break
         default:
-          break;
+          break
       }
-    };
+    }
 
     return {
       onView
-    };
+    }
   }
-};
+}
 </script>
 
 <template>
@@ -46,12 +47,15 @@ export default {
       </view>
     </view>
     <view class="feature__right">
-      <view class="feature__right__chunk"></view>
+      <view class="feature__right__chunk" @tap="onView('room')">
+        <view class="feature__title">
+          <nut-icon name="message" size="16"></nut-icon>
+          <text class="text">弹幕</text>
+        </view>
+      </view>
       <view class="feature__right__chunk"></view>
     </view>
   </view>
-
-  <!-- <Barrage class="barrage" /> -->
 </template>
 
 <style lang="scss">
@@ -164,11 +168,5 @@ export default {
   75% {
     clip-path: inset(0 0 0 99%);
   }
-}
-
-.barrage {
-  width: 100%;
-  display: block;
-  margin-top: 50px;
 }
 </style>
