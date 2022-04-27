@@ -74,7 +74,7 @@ export default {
 }
 .user-info {
   margin-top: 300px;
-  padding: 0 40px;
+  padding: 0 30px;
   justify-content: flex-start;
   color: $font-color;
   .avatar {
@@ -88,7 +88,7 @@ export default {
 }
 
 .feature {
-  margin: 50px 40px 0 40px;
+  margin: 50px 20px 0 20px;
   align-items: flex-start;
   justify-content: space-between;
   .feature__title {

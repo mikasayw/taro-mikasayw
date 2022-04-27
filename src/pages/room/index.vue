@@ -14,13 +14,24 @@ export default {
       if (!inputWord.value) {
         wx.showToast({ title: '不能输入空弹幕～', icon: 'none' })
       }
-
       barrageRef?.value?.addBarrage(inputWord.value)
+      inputWord.value = ''
+    }
+
+    const keyBoardHeight = ref<number>(0)
+    const onFocus = (_value: string | number, event: Event) => {
+      keyBoardHeight.value = event.detail!.height
+    }
+    const onBlur = () => {
+      keyBoardHeight.value = 0
     }
     return {
       barrageRef,
       inputWord,
-      onEnter
+      keyBoardHeight,
+      onEnter,
+      onFocus,
+      onBlur
     }
   }
 }
@@ -34,14 +45,17 @@ export default {
     </view>
   </view>
 
-  <view class="room__footer">
+  <view class="room__footer" :style="{ bottom: keyBoardHeight + 'px' }">
     <view class="flexbox">
       <view class="room__footer__dan">弹</view>
       <nut-input
         v-model="inputWord"
         class="room__footer__ipt"
+        placeholder="请输入15字以内的弹幕1"
         :border="false"
-        placeholder="请输入15字以内的弹幕"
+        :adjust-position="false"
+        @focus="onFocus"
+        @blur="onBlur"
       />
       <nut-icon name="message" size="20" @click="onEnter"></nut-icon>
     </view>
@@ -50,8 +64,11 @@ export default {
 
 <style lang="scss">
 .room__barrage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   padding: 20px;
-  position: relative;
   height: 400px;
   margin: 50px 20px 0 20px;
   border-radius: 20px;
