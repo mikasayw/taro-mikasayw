@@ -8,17 +8,10 @@ export default {
 
     const onView = (type: string) => {
       switch (type) {
-        case 'waterMark':
-          router.navigateTo({
-            url: '/pages/waterMark/index'
-          })
-          break
-        case 'room':
-          router.navigateTo({
-            url: '/pages/room/index'
-          })
-          break
         default:
+          router.navigateTo({
+            url: `/pages/${type}/index`
+          })
           break
       }
     }
@@ -53,7 +46,12 @@ export default {
           <text class="text">弹幕</text>
         </view>
       </view>
-      <view class="feature__right__chunk"></view>
+      <view class="feature__right__chunk" @tap="onView('cook')">
+        <view class="feature__title">
+          <nut-icon name="dshop" size="16"></nut-icon>
+          <text class="text">疫情厨房</text>
+        </view>
+      </view>
     </view>
   </view>
 </template>

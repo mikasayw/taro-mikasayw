@@ -13,9 +13,10 @@ export default {
     const onEnter = (): void => {
       if (!inputWord.value) {
         wx.showToast({ title: '不能输入空弹幕～', icon: 'none' })
+        return
       }
-      barrageRef?.value?.addBarrage(inputWord.value)
-      inputWord.value = ''
+      barrageRef.value?.addBarrage(inputWord.value)
+      // inputWord.value = ''
     }
 
     const keyBoardHeight = ref<number>(0)
@@ -51,7 +52,7 @@ export default {
       <nut-input
         v-model="inputWord"
         class="room__footer__ipt"
-        placeholder="请输入15字以内的弹幕1"
+        placeholder="请输入15字以内的弹幕~"
         :border="false"
         :adjust-position="false"
         @focus="onFocus"
