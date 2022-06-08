@@ -56,19 +56,9 @@ export default {
     onMounted(() => {
       setTimeout(() => {
         nextTick(async () => {
-          isLoading.value = true
-          const node = await getCanvasCtx()
-          // console.log(node);
-
+          const node: any = await getCanvasCtx()
           canvasCtx.canvas = node
           canvasCtx.ctx = node.getContext('2d')
-
-          wx.downloadFile({
-            url: 'https://s2.loli.net/2022/04/25/hzqxS51GADXTeoK.jpg',
-            success: (res) => {
-              _getImageInfo(res.tempFilePath)
-            }
-          })
         })
       }, 50)
     })
@@ -111,7 +101,7 @@ export default {
       // 花费较长时间定位到此问题，目前先通过api获取
       // const result = await getCanvasCtx()
       // const _node = result
-      const _node = canvasCtx.canvas
+      const _node: any = canvasCtx.canvas
 
       _node.width = dpr * imageWidth
       _node.height = dpr * imageHeight

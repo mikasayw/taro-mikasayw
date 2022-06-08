@@ -40,7 +40,11 @@ export default {
       </view>
     </view>
     <view class="feature__right">
-      <view class="feature__right__chunk" @tap="onView('room')">
+      <view
+        class="feature__right__chunk"
+        style="background-image: url(https://s2.loli.net/2022/04/22/ex3d6g18bitq2Er.png)"
+        @tap="onView('room')"
+      >
         <view class="feature__title">
           <nut-icon name="message" size="16"></nut-icon>
           <text class="text">弹幕</text>
